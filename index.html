@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-b from-white to-green-300">
+    <!-- Navbar -->
+    <header class="bg-gray-800 p-4 text-white">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="space-x-4">
+          <a href="#" class="hover:text-gray-400">Home</a>
+          <a href="#" class="hover:text-gray-400">Event</a>
+          <a href="#" class="hover:text-gray-400">Contact</a>
+          <a href="#" class="hover:text-gray-400">Blog</a>
+        </div>
+        <div class="flex items-center">
+          <input
+            type="text"
+            placeholder="Search"
+            class="px-4 py-2 bg-gray-700 text-white rounded-lg focus:outline-none focus:ring"
+          />
+          <button class="ml-2 text-gray-200">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 16l2-2-2-2M2 12h20m-6 4l2-2-2-2"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="max-w-7xl mx-auto mt-10">
+      <!-- Colored Boxes -->
+      <div class="flex justify-center space-x-8">
+        <div class="w-32 h-48 bg-teal-300"></div>
+        <div class="w-32 h-48 bg-purple-600"></div>
+        <div class="w-32 h-48 bg-blue-900"></div>
+        <div class="w-32 h-48 bg-yellow-500"></div>
+      </div>
+
+      <!-- Overview Text -->
+      <div class="text-center mt-10">
+        <h2 class="text-2xl font-bold">Overview</h2>
+        <p class="mt-4 text-gray-700 max-w-lg mx-auto">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+
+      <!-- Carousel Controls -->
+      <div class="flex justify-center mt-8 space-x-4">
+        <button id="prevSlide" class="text-black hover:text-gray-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <button id="nextSlide" class="text-black hover:text-gray-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+    </main>
+
+    <script>
+      // Simple interactivity for the carousel (pseudo-carousel, only for demonstration)
+      let colors = [
+        "bg-teal-300",
+        "bg-purple-600",
+        "bg-blue-900",
+        "bg-yellow-500",
+      ];
+      let currentIndex = 0;
+
+      const boxes = document.querySelectorAll("div.w-32");
+
+      document.getElementById("nextSlide").addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % colors.length;
+        boxes.forEach((box, index) => {
+          box.className = `w-32 h-48 ${
+            colors[(index + currentIndex) % colors.length]
+          }`;
+        });
+      });
+
+      document.getElementById("prevSlide").addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + colors.length) % colors.length;
+        boxes.forEach((box, index) => {
+          box.className = `w-32 h-48 ${
+            colors[(index + currentIndex) % colors.length]
+          }`;
+        });
+      });
+    </script>
+  </body>
+</html>
